@@ -1,0 +1,65 @@
+// Prisma schema for the Robot Edu App
+// Note: SQLite has no native enum support, so "enum-like" fields are typed
+// as String and the allowed values are documented in comments next to them.
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+/// role: "teacher" | "student"
+/// boardType: "arduino" | "microbit" | null
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      String
+  classId   String?
+  boardType String?
+  createdAt DateTime @default(now())
+
+  class       Class?       @relation(fields: [classId], references: [id])
+  progress    Progress[]
+  submissions Submission[]
+  taughtClasses Class[]    @relation("ClassTeacher")
+}
+
+model Class {
+  id        String   @id @default(cuid())
+  teacherId String
+  name      String
+  createdAt DateTime @default(now())
+
+  teacher  User   @relation("ClassTeacher", fields: [teacherId], references: [id])
+  students User[]
+}
+
+/// stage: 1 | 2 | 3 | 4
+/// status: "not_started" | "in_progress" | "done"
+model Progress {
+  id        String   @id @default(cuid())
+  userId    String
+  stage     Int
+  status    String   @default("not_started")
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@unique([userId, stage])
+}
+
+/// stage: 1 | 2 | 3 | 4
+model Submission {
+  id        String   @id @default(cuid())
+  userId    String
+  stage     Int
+  content   String
+  feedback  String?
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id])
+}

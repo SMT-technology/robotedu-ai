@@ -1,0 +1,15 @@
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/db";
+
+/** Lists seeded demo accounts so the dummy login screen can offer real users to pick from. */
+export async function GET() {
+  const users = await prisma.user.findMany({
+    orderBy: [{ role: "asc" }, { name: "asc" }],
+    select: { id: true, name: true, email: true, role: true, boardType: true },
+  });
+
+  const teachers = users.filter((u) => u.role === "teacher");
+  const students = users.filter((u) => u.role === "student");
+
+  return NextResponse.json({ teachers, students });
+}
