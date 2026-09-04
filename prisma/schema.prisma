@@ -1,10 +1,11 @@
 // Prisma schema for the Robot Edu App
-// Note: SQLite has no native enum support, so "enum-like" fields are typed
-// as String and the allowed values are documented in comments next to them.
+// Note: enum-like fields are typed as String (documented via comments below)
+// so the same schema stays portable if the DB provider ever changes again.
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL") // Supabase "Connection pooling" URI (port 6543, pgbouncer)
+  directUrl = env("DIRECT_URL")   // Supabase "Direct connection" URI (port 5432), used for migrations
 }
 
 generator client {
