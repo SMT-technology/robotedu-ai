@@ -53,12 +53,15 @@ model Progress {
   @@unique([userId, stage])
 }
 
-/// stage: 1 | 2 | 3 | 4
+/// stage: 1 (Tinkering/아이디어 보드) | 2 (Making/메이킹 일지) | 3 (Sharing) | 4 (Improving)
+/// One row = one idea-board card or one journal entry; a user can have many per stage.
 model Submission {
   id        String   @id @default(cuid())
   userId    String
   stage     Int
+  title     String
   content   String
+  imageUrl  String?
   feedback  String?
   createdAt DateTime @default(now())
 

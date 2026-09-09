@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 const STAGE_META = [
-  { stage: 1, title: "HW 설계", href: "/stage1-hw" },
-  { stage: 2, title: "제작/조립", href: "/stage2-build" },
+  { stage: 1, title: "아이디어 보드", href: "/stage1-hw" },
+  { stage: 2, title: "메이킹 일지", href: "/stage2-build" },
   { stage: 3, title: "SW 구동 도우미", href: "/stage3-sw" },
   { stage: 4, title: "AI 기술 탑재", href: "/stage4-ai" },
 ];

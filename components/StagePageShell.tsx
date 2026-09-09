@@ -7,8 +7,8 @@ import ProgressCards from "@/components/ProgressCards";
 import StageToggle from "@/components/StageToggle";
 
 const STAGE_TITLES: Record<number, string> = {
-  1: "HW 설계",
-  2: "제작/조립",
+  1: "탐색 · 아이디어 보드 (Tinkering)",
+  2: "설계 · 메이킹 일지 (Making)",
   3: "SW 구동 도우미 (AI 힌트 기반 코딩 지원)",
   4: "로봇에 AI 기술 탑재",
 };
@@ -52,9 +52,11 @@ export default async function StagePageShell({
           <StageToggle stage={stage} initialStatus={current.status} />
         </div>
 
-        <div className="mt-6 rounded-lg border border-dashed border-gray-300 p-6 text-sm text-gray-400">
-          (콘텐츠 준비 중 — Stage {stage} 학습 콘텐츠가 이 자리에 표시됩니다.)
-        </div>
+        {!children && (
+          <div className="mt-6 rounded-lg border border-dashed border-gray-300 p-6 text-sm text-gray-400">
+            (콘텐츠 준비 중 — Stage {stage} 학습 콘텐츠가 이 자리에 표시됩니다.)
+          </div>
+        )}
 
         {children}
       </section>
