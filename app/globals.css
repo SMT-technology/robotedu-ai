@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  button,
+  a {
+    @apply transition-all duration-200 ease-out;
+  }
+
+  button:not(:disabled):hover,
+  a[class*="rounded"]:hover {
+    @apply -translate-y-0.5 shadow-md;
+  }
+
+  button:not(:disabled):active,
+  a[class*="rounded"]:active {
+    @apply translate-y-0 shadow-sm;
+  }
+
+  button:focus-visible,
+  a:focus-visible {
+    @apply outline-none ring-4 ring-sky-200 ring-offset-2 ring-offset-white;
+  }
+
+  button:disabled {
+    @apply cursor-not-allowed;
+  }
+}
