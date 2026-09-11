@@ -40,21 +40,23 @@ export default async function StagePageShell({
   const current = progress.find((p) => p.stage === stage)!;
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10">
+    <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-10">
       <StudentNav studentName={user.name} boardProfile={boardProfile} />
       <ProgressCards progress={progress} />
 
-      <section className="mt-8 rounded-xl border border-gray-200 bg-white p-6 shadow-sm">
+      <section className="maker-panel dot-grid mt-6 overflow-hidden rounded-[2rem] p-5 sm:p-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 className="text-xl font-bold">
-            Stage {stage}: {STAGE_TITLES[stage]}
-          </h2>
+          <div>
+            <p className="mb-1 text-xs font-black uppercase tracking-[0.2em] text-sky-600">⚡ Maker Mission {stage}</p>
+            <h2 className="text-xl font-black tracking-tight text-slate-900 sm:text-2xl">Stage {stage}: {STAGE_TITLES[stage]}</h2>
+          </div>
           <StageToggle stage={stage} initialStatus={current.status} />
         </div>
 
         {!children && (
-          <div className="mt-6 rounded-lg border border-dashed border-gray-300 p-6 text-sm text-gray-400">
-            (콘텐츠 준비 중 — Stage {stage} 학습 콘텐츠가 이 자리에 표시됩니다.)
+          <div className="mt-6 rounded-2xl border-2 border-dashed border-sky-200 bg-white/70 p-8 text-center text-sm font-medium text-slate-400">
+            <div className="mb-3 text-4xl" aria-hidden="true">🚧</div>
+            콘텐츠 준비 중 — Stage {stage} 학습 콘텐츠가 이 자리에 표시됩니다.
           </div>
         )}
 
