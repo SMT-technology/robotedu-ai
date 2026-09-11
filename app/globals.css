@@ -1,3 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .robot-orbit {
+    @apply absolute h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white/70 text-2xl shadow-lg shadow-cyan-100/60 backdrop-blur-sm;
+  }
+
+  .robot-app button,
+  .robot-app a[class*="rounded"] {
+    @apply min-h-11 transition-all duration-200 ease-out;
+  }
+
+  .robot-app button {
+    @apply rounded-2xl;
+  }
+
+  .robot-app button:not(:disabled):hover,
+  .robot-app a[class*="rounded"]:hover {
+    @apply -translate-y-0.5 shadow-lg;
+  }
+
+  .robot-app button:not(:disabled):active,
+  .robot-app a[class*="rounded"]:active {
+    @apply translate-y-0 scale-[0.98] shadow-sm;
+  }
+
+  .robot-app button:focus-visible,
+  .robot-app a:focus-visible {
+    @apply outline-none ring-4 ring-cyan-200 ring-offset-2 ring-offset-white;
+  }
+
+  .robot-app button:disabled {
+    @apply cursor-not-allowed;
+  }
+}
