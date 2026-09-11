@@ -36,7 +36,7 @@ export default function BoardSelector({
   return (
     <div className="flex flex-col gap-4">
       {error && (
-        <p className="rounded-md bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
+        <p className="rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm font-medium text-red-600">⚠️ {error}</p>
       )}
       <div className="grid gap-4 sm:grid-cols-2">
         {profiles.map((profile) => {
@@ -44,29 +44,30 @@ export default function BoardSelector({
           return (
             <div
               key={profile.boardId}
-              className={`flex flex-col justify-between rounded-xl border p-5 shadow-sm ${
-                selected ? "border-blue-500 bg-blue-50" : "border-gray-200 bg-white"
+              className={`flex flex-col justify-between rounded-[2rem] border-2 p-6 shadow-lg shadow-sky-900/5 transition ${
+                selected ? "border-indigo-400 bg-indigo-50/90" : "border-white bg-white/90 hover:border-sky-200"
               }`}
             >
               <div>
-                <h3 className="text-lg font-semibold">{profile.displayName}</h3>
-                <p className="mt-1 text-xs text-gray-500">
+                <div className="mb-4 text-4xl" aria-hidden="true">{profile.boardId.includes("micro") ? "🤖" : "🦾"}</div>
+                <h3 className="text-xl font-black text-slate-900">{profile.displayName}</h3>
+                <p className="mt-2 inline-flex rounded-full bg-sky-100 px-2.5 py-1 text-xs font-bold text-sky-700">
                   코드 언어: {profile.codeTemplate.language}
                 </p>
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-2 text-xs font-medium text-slate-500">
                   통신 방식: {profile.communication.type}
                 </p>
-                <p className="mt-3 text-sm text-gray-700">
+                <p className="mt-4 border-t border-sky-100 pt-4 text-sm leading-6 text-slate-600">
                   지원 센서: {profile.supportedSensors.map((s) => s.name).join(", ")}
                 </p>
               </div>
               <button
                 onClick={() => handleSelect(profile.boardId)}
                 disabled={submittingId !== null}
-                className={`mt-4 rounded-md px-4 py-2 text-sm font-medium disabled:opacity-50 ${
+                className={`mt-5 px-4 py-2.5 text-sm font-bold shadow-sm disabled:opacity-50 ${
                   selected
-                    ? "bg-blue-600 text-white"
-                    : "border border-gray-300 hover:bg-gray-100"
+                    ? "bg-gradient-to-r from-sky-500 to-indigo-600 text-white"
+                    : "border border-sky-200 bg-sky-50 text-sky-700 hover:bg-sky-100"
                 }`}
               >
                 {submittingId === profile.boardId

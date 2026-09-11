@@ -18,21 +18,24 @@ export default function StudentNav({
   boardProfile: BoardProfile | null;
 }) {
   return (
-    <header className="mb-8 flex flex-col gap-3 border-b border-gray-200 pb-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <p className="text-sm text-gray-500">학생</p>
-          <h1 className="text-lg font-bold">{studentName}</h1>
+    <header className="maker-panel mb-6 flex flex-col gap-4 rounded-[2rem] p-4 sm:p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div className="flex items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-400 to-indigo-500 text-2xl shadow-lg shadow-sky-200" aria-hidden="true">🤖</div>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-sky-600">Maker Crew · 학생</p>
+            <h1 className="text-lg font-black text-slate-900">{studentName}의 로봇 랩</h1>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           <BoardBadge profile={boardProfile} />
           <LogoutButton />
         </div>
       </div>
-      <nav className="flex flex-wrap gap-2 text-sm">
+      <nav className="flex flex-wrap gap-2 border-t border-sky-100 pt-4 text-sm">
         <Link
           href="/onboarding"
-          className="rounded-md border border-gray-300 px-3 py-1.5 hover:bg-gray-100"
+          className="rounded-xl border border-indigo-200 bg-indigo-50 px-3 py-2 font-semibold text-indigo-700 hover:bg-indigo-100"
         >
           보드 다시 선택
         </Link>
@@ -40,7 +43,7 @@ export default function StudentNav({
           <Link
             key={s.href}
             href={s.href}
-            className="rounded-md border border-gray-300 px-3 py-1.5 hover:bg-gray-100"
+            className="rounded-xl border border-sky-100 bg-white px-3 py-2 font-semibold text-slate-600 hover:border-sky-300 hover:bg-sky-50 hover:text-sky-700"
           >
             {s.label}
           </Link>

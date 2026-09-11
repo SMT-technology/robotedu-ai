@@ -13,9 +13,9 @@ const LABEL: Record<Status, string> = {
 };
 
 const STYLE: Record<Status, string> = {
-  not_started: "bg-gray-200 text-gray-700",
-  in_progress: "bg-yellow-200 text-yellow-900",
-  done: "bg-green-200 text-green-900",
+  not_started: "border border-slate-200 bg-slate-100 text-slate-700",
+  in_progress: "border border-amber-200 bg-amber-100 text-amber-900",
+  done: "border border-emerald-200 bg-emerald-100 text-emerald-900",
 };
 
 export default function StageToggle({
@@ -49,7 +49,7 @@ export default function StageToggle({
     <button
       onClick={handleClick}
       disabled={saving}
-      className={`rounded-full px-4 py-1.5 text-sm font-medium transition disabled:opacity-50 ${STYLE[status]}`}
+      className={`px-4 py-2 text-sm font-bold shadow-sm transition disabled:opacity-50 ${STYLE[status]}`}
     >
       {LABEL[status]} · 클릭하여 변경
     </button>
